@@ -9,20 +9,21 @@ Rules:
     3. No large disk can sit over a small disk
 """
 
-def tower(a, fro, aux, to):
+def tower(disks, source, auxillary, destination):
     
-    if a == 1:
-        print("Move disc 1 from %s to %s" % (fro, to))
+    if disks == 1:
+        print("Move disc 1 from %s to %s" % (source, destination))
     else:
-        tower(a-1, fro, to, aux)
-        print("Move disc %s from %s to %s" % (a, fro, to))
-        tower(a-1, aux, fro, to)
+        tower(disks-1, source, destination, auxillary)
+        print("Move disc %s from %s to %s" % (disks, source, destination))
+        tower(disks-1, auxillary, source, destination)
 
 def no_of_steps(n):
     steps = pow(2,n) - 1
     return steps
 
 
-tower(10, 'A', 'B', 'C')
-steps = no_of_steps(10)
+disks = 3
+tower(disks, 'A', 'B', 'C')
+steps = no_of_steps(disks)
 print("Completed after %d moves"%steps)
